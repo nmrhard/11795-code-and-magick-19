@@ -16,10 +16,6 @@ var BAR_GAP = 50;
 var NAME_GAP = 10;
 var NAME_HEIGHT = 20;
 
-var getRandomBarColor = function () {
- return 'hsl(240,' + Math.floor(Math.random()*100)  + '%, 50%)';
-}
-
 var renderCloud = function(ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
