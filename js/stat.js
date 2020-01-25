@@ -27,7 +27,7 @@ var renderCloud = function (ctx, x, y, color) {
 
 var getRandomBarColor = function () {
   return 'hsl(240,' + Math.floor(Math.random() * 100) + '%, 50%)';
-}
+};
 
 window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, CLOUD_X + CLOUD_GAP, CLOUD_Y + CLOUD_GAP, CLOUD_SHADOW);
