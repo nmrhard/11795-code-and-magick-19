@@ -28,14 +28,14 @@ var renderCloud = function (ctx, x, y, color) {
 var getBarColor = function (player, i) {
   var saturation = 20 * i;
 
-  if  (saturation > 100) {
+  if (saturation > 100) {
     saturation = Math.floor(Math.random() * 100);
   }
 
   var barColor = 'hsl(240,' + 20 * i + '%, 50%)';
 
   if (player === 'Вы') {
-     barColor = MY_BAR_COLOR;
+    barColor = MY_BAR_COLOR;
   }
 
   return barColor;
@@ -43,7 +43,7 @@ var getBarColor = function (player, i) {
 
 var getResultY = function (multiplier, height) {
   return CLOUD_HEIGHT - NAME_GAP * multiplier - NAME_HEIGHT - height;
-}
+};
 
 window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, CLOUD_X + CLOUD_GAP, CLOUD_Y + CLOUD_GAP, CLOUD_SHADOW);
@@ -55,7 +55,7 @@ window.renderStatistics = function (ctx, players, times) {
     var barHeight = (MAX_BAR_HEIGHT * times[i]) / maxTime;
     var resultX = BAR_X + (BAR_WIDTH + BAR_GAP) * i;
     var resultYBar = getResultY(1, barHeight);
-    var resultYTime = getResultY(2, barHeight);;
+    var resultYTime = getResultY(2, barHeight);
 
     ctx.fillStyle = TEXT_COLOR;
     ctx.fillText(player, resultX, CLOUD_HEIGHT - NAME_GAP);
