@@ -17,7 +17,7 @@ var BAR_WIDTH = 40;
 var MY_BAR_COLOR = 'rgba(255, 0, 0, 1)';
 var MAX_BAR_HEIGHT = 150;
 var BAR_GAP = 50;
-var NAME_GAP = 10;
+var NAME_GAP = 5;
 var NAME_HEIGHT = 20;
 
 var renderCloud = function (ctx, x, y, color) {
@@ -25,9 +25,25 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-var getRandomBarColor = function () {
-  return 'hsl(240,' + Math.floor(Math.random() * 100) + '%, 50%)';
+var getBarColor = function (player, i) {
+  var saturation = 20 * i;
+
+  if  (saturation > 100) {
+    saturation = Math.floor(Math.random() * 100);
+  }
+
+  var barColor = 'hsl(240,' + 20 * i + '%, 50%)';
+
+  if (player === 'Вы') {
+     barColor = MY_BAR_COLOR;
+  }
+
+  return barColor;
 };
+
+var getResultY = function (multiplier, height) {
+  return CLOUD_HEIGHT - NAME_GAP * multiplier - NAME_HEIGHT - height;
+}
 
 window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, CLOUD_X + CLOUD_GAP, CLOUD_Y + CLOUD_GAP, CLOUD_SHADOW);
@@ -35,19 +51,18 @@ window.renderStatistics = function (ctx, players, times) {
 
   var maxTime = Math.max.apply(null, times);
 
-  for (var i = 0; i < players.length; i++) {
+  players.forEach(function (player, i) {
     var barHeight = (MAX_BAR_HEIGHT * times[i]) / maxTime;
     var resultX = BAR_X + (BAR_WIDTH + BAR_GAP) * i;
+    var resultYBar = getResultY(1, barHeight);
+    var resultYTime = getResultY(2, barHeight);;
 
     ctx.fillStyle = TEXT_COLOR;
-    ctx.fillText(players[i], resultX, CLOUD_HEIGHT - NAME_GAP);
-    ctx.fillText(Math.floor(times[i]), resultX, CLOUD_HEIGHT - NAME_GAP * 2 - NAME_HEIGHT - barHeight);
-    ctx.fillStyle = getRandomBarColor();
-    if (players[i] === 'Вы') {
-      ctx.fillStyle = MY_BAR_COLOR;
-    }
-    ctx.fillRect(resultX, CLOUD_HEIGHT - NAME_GAP - NAME_HEIGHT - barHeight, BAR_WIDTH, barHeight);
-  }
+    ctx.fillText(player, resultX, CLOUD_HEIGHT - NAME_GAP);
+    ctx.fillText(Math.floor(times[i]), resultX, resultYTime);
+    ctx.fillStyle = getBarColor(player, i);
+    ctx.fillRect(resultX, resultYBar, BAR_WIDTH, barHeight);
+  });
 
   ctx.fillStyle = TEXT_COLOR;
   ctx.font = TEXT_FONT;
