@@ -26,17 +26,17 @@ var renderCloud = function (ctx, x, y, color) {
 };
 
 var getBarColor = function (player, i) {
-  var saturation = 20 * i;
+  if (player === 'Вы') {
+    barColor = MY_BAR_COLOR;
+    return barColor;
+  }
 
+  var saturation = 20 * i;
   if (saturation > 100) {
     saturation = Math.floor(Math.random() * 100);
   }
 
   var barColor = 'hsl(240,' + 20 * i + '%, 50%)';
-
-  if (player === 'Вы') {
-    barColor = MY_BAR_COLOR;
-  }
 
   return barColor;
 };
