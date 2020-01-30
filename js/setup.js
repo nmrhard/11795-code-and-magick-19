@@ -60,7 +60,7 @@ var renderCharacter = function (character) {
 var addCharactersToList = function (characters) {
   var fragment = document.createDocumentFragment();
 
-  characters.forEach (function (character) {
+  characters.forEach(function (character) {
     fragment.appendChild(renderCharacter(character));
   });
 
