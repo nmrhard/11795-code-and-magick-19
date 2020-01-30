@@ -1,9 +1,13 @@
 'use strict';
 
-var FIRST_NAME = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var LAST_NAME = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
+var Name = {
+  FIRST: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
+  LAST: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг']
+};
+var Color = {
+  COAT: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
+  EYES: ['black', 'red', 'blue', 'yellow', 'green']
+};
 var NUMBER_CHARACTERS = 4;
 
 var setupWindow = document.querySelector('.setup');
@@ -19,10 +23,10 @@ var getRandomElement = function (arrElements) {
 };
 
 var generateCharacter = function () {
-  var firstName = getRandomElement(FIRST_NAME);
-  var lastName = getRandomElement(LAST_NAME);
-  var coatColor = getRandomElement(COAT_COLOR);
-  var eyesColor = getRandomElement(EYES_COLOR);
+  var firstName = getRandomElement(Name.FIRST);
+  var lastName = getRandomElement(Name.LAST);
+  var coatColor = getRandomElement(Color.COAT);
+  var eyesColor = getRandomElement(Color.EYES);
 
   var character = {
     name: firstName + ' ' + lastName,
@@ -56,9 +60,9 @@ var renderCharacter = function (character) {
 var addCharactersToList = function (characters) {
   var fragment = document.createDocumentFragment();
 
-  for (var i = 0; i < characters.length; i++) {
-    fragment.appendChild(renderCharacter(characters[i]));
-  }
+  characters.forEach (function (character) {
+    fragment.appendChild(renderCharacter(character));
+  });
 
   return fragment;
 };
