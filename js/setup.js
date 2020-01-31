@@ -12,7 +12,7 @@ var Nodes = {
   SIMILAR_LIST_ELEMENT: document.querySelector('.setup-similar-list'),
   SIMILAR_CHARACTER_TEMPLATE: document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item'),
   SETUP_WINDOW: document.querySelector('.setup')
-}
+};
 var NUMBER_CHARACTERS = 4;
 
 var getRandomElement = function (arrElements) {
