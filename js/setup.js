@@ -8,15 +8,12 @@ var Color = {
   COAT: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
   EYES: ['black', 'red', 'blue', 'yellow', 'green']
 };
+var Nodes = {
+  SIMILAR_LIST_ELEMENT: document.querySelector('.setup-similar-list'),
+  SIMILAR_CHARACTER_TEMPLATE: document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item'),
+  SETUP_WINDOW: document.querySelector('.setup')
+}
 var NUMBER_CHARACTERS = 4;
-
-var setupWindow = document.querySelector('.setup');
-setupWindow.classList.remove('hidden');
-
-var similarListElement = document.querySelector('.setup-similar-list');
-var similarCharacterTemplate = document.querySelector('#similar-wizard-template')
-.content
-.querySelector('.setup-similar-item');
 
 var getRandomElement = function (arrElements) {
   return arrElements[Math.floor(Math.random() * arrElements.length)];
@@ -37,10 +34,10 @@ var generateCharacter = function () {
   return character;
 };
 
-var createCharacters = function () {
+var createCharacters = function (numberCharacters) {
   var characters = [];
 
-  for (var i = 0; i < NUMBER_CHARACTERS; i++) {
+  for (var i = 0; i < numberCharacters; i++) {
     characters.push(generateCharacter());
   }
 
@@ -48,7 +45,7 @@ var createCharacters = function () {
 };
 
 var renderCharacter = function (character) {
-  var characterElement = similarCharacterTemplate.cloneNode(true);
+  var characterElement = Nodes.SIMILAR_CHARACTER_TEMPLATE.cloneNode(true);
 
   characterElement.querySelector('.setup-similar-label').textContent = character.name;
   characterElement.querySelector('.wizard-coat').style.fill = character.coatColor;
@@ -67,6 +64,7 @@ var addCharactersToList = function (characters) {
   return fragment;
 };
 
-similarListElement.appendChild(addCharactersToList(createCharacters()));
+Nodes.SIMILAR_LIST_ELEMENT.appendChild(addCharactersToList(createCharacters(NUMBER_CHARACTERS)));
 
-setupWindow.querySelector('.setup-similar').classList.remove('hidden');
+Nodes.SETUP_WINDOW.classList.remove('hidden');
+Nodes.SETUP_WINDOW.querySelector('.setup-similar').classList.remove('hidden');
