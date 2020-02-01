@@ -15,29 +15,22 @@ var Nodes = {
 };
 var NUMBER_CHARACTERS = 4;
 
-var getRandomElement = function (arrElements) {
-  return arrElements[Math.floor(Math.random() * arrElements.length)];
+var getRandomElement = function (items) {
+  return items[Math.floor(Math.random() * items.length)];
 };
 
 var generateCharacter = function () {
-  var firstName = getRandomElement(Name.FIRST);
-  var lastName = getRandomElement(Name.LAST);
-  var coatColor = getRandomElement(Color.COAT);
-  var eyesColor = getRandomElement(Color.EYES);
-
-  var character = {
-    name: firstName + ' ' + lastName,
-    coatColor: coatColor,
-    eyesColor: eyesColor
+  return {
+    name: getRandomElement(Name.FIRST) + ' ' + getRandomElement(Name.LAST),
+    coatColor: getRandomElement(Color.COAT),
+    eyesColor: getRandomElement(Color.EYES)
   };
-
-  return character;
 };
 
-var createCharacters = function (numberCharacters) {
+var createCharacters = function (count) {
   var characters = [];
 
-  for (var i = 0; i < numberCharacters; i++) {
+  for (var i = 0; i < count; i++) {
     characters.push(generateCharacter());
   }
 
