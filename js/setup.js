@@ -1,5 +1,7 @@
 'use strict';
 
+var ESC_KEY = 'Escape';
+var ENTER_KEY = 'Enter';
 var Name = {
   FIRST: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
   LAST: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг']
@@ -11,7 +13,9 @@ var Color = {
 var Nodes = {
   SIMILAR_LIST_ELEMENT: document.querySelector('.setup-similar-list'),
   SIMILAR_CHARACTER_TEMPLATE: document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item'),
-  SETUP_WINDOW: document.querySelector('.setup')
+  SETUP_WINDOW: document.querySelector('.setup'),
+  SETUP_OPEN: document.querySelector('.setup-open'),
+  SETUP_CLOSE: document.querySelector('.setup-close')
 };
 var NUMBER_CHARACTERS = 4;
 
@@ -57,7 +61,42 @@ var addCharactersToList = function (characters) {
   return fragment;
 };
 
-Nodes.SIMILAR_LIST_ELEMENT.appendChild(addCharactersToList(createCharacters(NUMBER_CHARACTERS)));
+var onSetupEscKeyDown = function (evt) {
+  if (evt.key === ESC_KEY && evt.target.className !== 'setup-user-name') {
+     closeSetup();
+    }
+  };
 
-Nodes.SETUP_WINDOW.classList.remove('hidden');
+var openSetup = function () {
+  Nodes.SETUP_WINDOW.classList.remove('hidden');
+
+  document.addEventListener('keydown', onSetupEscKeyDown);
+};
+
+var closeSetup = function () {
+  Nodes.SETUP_WINDOW.classList.add('hidden');
+  document.removeEventListener('keydown', onSetupEscKeyDown)
+}
+
+Nodes.SETUP_OPEN.addEventListener('click', function () {
+  openSetup();
+});
+
+Nodes.SETUP_OPEN.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    openSetup();
+  }
+});
+
+Nodes.SETUP_CLOSE.addEventListener('click', function () {
+  closeSetup();
+});
+
+Nodes.SETUP_CLOSE.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    closeSetup();
+  }
+});
+
+Nodes.SIMILAR_LIST_ELEMENT.appendChild(addCharactersToList(createCharacters(NUMBER_CHARACTERS)));
 Nodes.SETUP_WINDOW.querySelector('.setup-similar').classList.remove('hidden');
