@@ -18,14 +18,14 @@ var Nodes = {
   SETUP_OPEN: document.querySelector('.setup-open')
 };
 var SetupNodes = {
-    SETUP_CLOSE: Nodes.SETUP_WINDOW.querySelector('.setup-close'),
-    USER_NAME_INPUT: Nodes.SETUP_WINDOW.querySelector('.setup-user-name'),
-    WIZARD_COAT: Nodes.SETUP_WINDOW.querySelector('.wizard-coat'),
-    WIZARD_EYES: Nodes.SETUP_WINDOW.querySelector('.wizard-eyes'),
-    FIREBALL: Nodes.SETUP_WINDOW.querySelector('.setup-fireball-wrap'),
-    COAT_COLOR_INPUT: Nodes.SETUP_WINDOW.querySelector('input[name=coat-color]'),
-    EYES_COLOR_INPUT: Nodes.SETUP_WINDOW.querySelector('input[name=eyes-color]'),
-    FIREBALL_COLOR_INPUT: Nodes.SETUP_WINDOW.querySelector('input[name=fireball-color]')
+  SETUP_CLOSE: Nodes.SETUP_WINDOW.querySelector('.setup-close'),
+  USER_NAME_INPUT: Nodes.SETUP_WINDOW.querySelector('.setup-user-name'),
+  WIZARD_COAT: Nodes.SETUP_WINDOW.querySelector('.wizard-coat'),
+  WIZARD_EYES: Nodes.SETUP_WINDOW.querySelector('.wizard-eyes'),
+  FIREBALL: Nodes.SETUP_WINDOW.querySelector('.setup-fireball-wrap'),
+  COAT_COLOR_INPUT: Nodes.SETUP_WINDOW.querySelector('input[name=coat-color]'),
+  EYES_COLOR_INPUT: Nodes.SETUP_WINDOW.querySelector('input[name=eyes-color]'),
+  FIREBALL_COLOR_INPUT: Nodes.SETUP_WINDOW.querySelector('input[name=fireball-color]')
 };
 var NUMBER_CHARACTERS = 4;
 
@@ -76,9 +76,9 @@ var addCharactersToList = function (characters) {
 
 var onSetupEscKeyDown = function (evt) {
   if (evt.key === ESC_KEY && evt.target !== SetupNodes.USER_NAME_INPUT) {
-     closeSetup();
-    }
-  };
+    closeSetup();
+  }
+};
 
 var openSetup = function () {
   Nodes.SETUP_WINDOW.classList.remove('hidden');
@@ -88,8 +88,8 @@ var openSetup = function () {
 
 var closeSetup = function () {
   Nodes.SETUP_WINDOW.classList.add('hidden');
-  document.removeEventListener('keydown', onSetupEscKeyDown)
-}
+  document.removeEventListener('keydown', onSetupEscKeyDown);
+};
 
 Nodes.SETUP_OPEN.addEventListener('click', function () {
   openSetup();
@@ -111,7 +111,7 @@ SetupNodes.SETUP_CLOSE.addEventListener('keydown', function (evt) {
   }
 });
 
-//Validate user name input
+// Validate user name input
 
 SetupNodes.USER_NAME_INPUT.addEventListener('invalid', function () {
   if (SetupNodes.USER_NAME_INPUT.validity.tooShort) {
@@ -125,11 +125,11 @@ SetupNodes.USER_NAME_INPUT.addEventListener('invalid', function () {
   }
 });
 
-//Change character
+// Change character
 
 var changeElementColor = function (element, cssProperty, color) {
   element.setAttribute('style', cssProperty + ': ' + color);
-}
+};
 
 SetupNodes.WIZARD_COAT.addEventListener('click', function (evt) {
   var color = getRandomElement(Color.COAT);
