@@ -15,7 +15,8 @@ var Nodes = {
   SIMILAR_CHARACTER_TEMPLATE: document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item'),
   SETUP_WINDOW: document.querySelector('.setup'),
   SETUP_OPEN: document.querySelector('.setup-open'),
-  SETUP_CLOSE: document.querySelector('.setup-close')
+  SETUP_CLOSE: document.querySelector('.setup-close'),
+  USER_NAME_INPUT: document.querySelector('.setup-user-name')
 };
 var NUMBER_CHARACTERS = 4;
 
@@ -62,7 +63,7 @@ var addCharactersToList = function (characters) {
 };
 
 var onSetupEscKeyDown = function (evt) {
-  if (evt.key === ESC_KEY && evt.target.className !== 'setup-user-name') {
+  if (evt.key === ESC_KEY && evt.target !== Nodes.USER_NAME_INPUT) {
      closeSetup();
     }
   };
@@ -95,6 +96,18 @@ Nodes.SETUP_CLOSE.addEventListener('click', function () {
 Nodes.SETUP_CLOSE.addEventListener('keydown', function (evt) {
   if (evt.key === ENTER_KEY) {
     closeSetup();
+  }
+});
+
+Nodes.USER_NAME_INPUT.addEventListener('invalid', function () {
+  if (Nodes.USER_NAME_INPUT.validity.tooShort) {
+    Nodes.USER_NAME_INPUT.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else if (Nodes.USER_NAME_INPUT.validity.tooLong) {
+    Nodes.setCustomVilidity('Имя не должно превышать 25-ти символов');
+  } else if (Nodes.USER_NAME_INPUT.validity.valueMissing) {
+    Nodes.USER_NAME_INPUT.setCustomValidity('Обязательное поле');
+  } else {
+    Nodes.USER_NAME_INPUT.setCustomValidity('');
   }
 });
 
