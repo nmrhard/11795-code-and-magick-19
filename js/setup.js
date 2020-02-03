@@ -8,15 +8,24 @@ var Name = {
 };
 var Color = {
   COAT: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
-  EYES: ['black', 'red', 'blue', 'yellow', 'green']
+  EYES: ['black', 'red', 'blue', 'yellow', 'green'],
+  FIREBALL: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
 };
 var Nodes = {
   SIMILAR_LIST_ELEMENT: document.querySelector('.setup-similar-list'),
   SIMILAR_CHARACTER_TEMPLATE: document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item'),
   SETUP_WINDOW: document.querySelector('.setup'),
-  SETUP_OPEN: document.querySelector('.setup-open'),
-  SETUP_CLOSE: document.querySelector('.setup-close'),
-  USER_NAME_INPUT: document.querySelector('.setup-user-name')
+  SETUP_OPEN: document.querySelector('.setup-open')
+};
+var SetupNodes = {
+    SETUP_CLOSE: Nodes.SETUP_WINDOW.querySelector('.setup-close'),
+    USER_NAME_INPUT: Nodes.SETUP_WINDOW.querySelector('.setup-user-name'),
+    WIZARD_COAT: Nodes.SETUP_WINDOW.querySelector('.wizard-coat'),
+    WIZARD_EYES: Nodes.SETUP_WINDOW.querySelector('.wizard-eyes'),
+    FIREBALL: Nodes.SETUP_WINDOW.querySelector('.setup-fireball-wrap'),
+    COAT_COLOR_INPUT: Nodes.SETUP_WINDOW.querySelector('input[name=coat-color]'),
+    EYES_COLOR_INPUT: Nodes.SETUP_WINDOW.querySelector('input[name=eyes-color]'),
+    FIREBALL_COLOR_INPUT: Nodes.SETUP_WINDOW.querySelector('input[name=fireball-color]')
 };
 var NUMBER_CHARACTERS = 4;
 
@@ -62,8 +71,11 @@ var addCharactersToList = function (characters) {
   return fragment;
 };
 
+
+// Close/open window setup
+
 var onSetupEscKeyDown = function (evt) {
-  if (evt.key === ESC_KEY && evt.target !== Nodes.USER_NAME_INPUT) {
+  if (evt.key === ESC_KEY && evt.target !== SetupNodes.USER_NAME_INPUT) {
      closeSetup();
     }
   };
@@ -89,26 +101,52 @@ Nodes.SETUP_OPEN.addEventListener('keydown', function (evt) {
   }
 });
 
-Nodes.SETUP_CLOSE.addEventListener('click', function () {
+SetupNodes.SETUP_CLOSE.addEventListener('click', function () {
   closeSetup();
 });
 
-Nodes.SETUP_CLOSE.addEventListener('keydown', function (evt) {
+SetupNodes.SETUP_CLOSE.addEventListener('keydown', function (evt) {
   if (evt.key === ENTER_KEY) {
     closeSetup();
   }
 });
 
-Nodes.USER_NAME_INPUT.addEventListener('invalid', function () {
-  if (Nodes.USER_NAME_INPUT.validity.tooShort) {
-    Nodes.USER_NAME_INPUT.setCustomValidity('Имя должно состоять минимум из 2-х символов');
-  } else if (Nodes.USER_NAME_INPUT.validity.tooLong) {
-    Nodes.setCustomVilidity('Имя не должно превышать 25-ти символов');
-  } else if (Nodes.USER_NAME_INPUT.validity.valueMissing) {
-    Nodes.USER_NAME_INPUT.setCustomValidity('Обязательное поле');
+//Validate user name input
+
+SetupNodes.USER_NAME_INPUT.addEventListener('invalid', function () {
+  if (SetupNodes.USER_NAME_INPUT.validity.tooShort) {
+    SetupNodes.USER_NAME_INPUT.setCustomValidity('Имя должно состоять минимум из 2-х символов');
+  } else if (SetupNodes.USER_NAME_INPUT.validity.tooLong) {
+    SetupNodes.setCustomVilidity('Имя не должно превышать 25-ти символов');
+  } else if (SetupNodes.USER_NAME_INPUT.validity.valueMissing) {
+    SetupNodes.USER_NAME_INPUT.setCustomValidity('Обязательное поле');
   } else {
-    Nodes.USER_NAME_INPUT.setCustomValidity('');
+    SetupNodes.USER_NAME_INPUT.setCustomValidity('');
   }
+});
+
+//Change character
+
+var changeElementColor = function (element, cssProperty, color) {
+  element.setAttribute('style', cssProperty + ': ' + color);
+}
+
+SetupNodes.WIZARD_COAT.addEventListener('click', function (evt) {
+  var color = getRandomElement(Color.COAT);
+  changeElementColor(evt.currentTarget, 'fill', color);
+  SetupNodes.COAT_COLOR_INPUT.value = color;
+});
+
+SetupNodes.WIZARD_EYES.addEventListener('click', function (evt) {
+  var color = getRandomElement(Color.EYES);
+  changeElementColor(evt.currentTarget, 'fill', color);
+  SetupNodes.EYES_COLOR_INPUT.value = color;
+});
+
+SetupNodes.FIREBALL.addEventListener('click', function (evt) {
+  var color = getRandomElement(Color.FIREBALL);
+  changeElementColor(evt.currentTarget, 'background', color);
+  SetupNodes.FIREBALL_COLOR_INPUT.value = color;
 });
 
 Nodes.SIMILAR_LIST_ELEMENT.appendChild(addCharactersToList(createCharacters(NUMBER_CHARACTERS)));
