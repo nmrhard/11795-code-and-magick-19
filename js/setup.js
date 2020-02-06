@@ -3,7 +3,7 @@
 var Key = {
   ESC: 'Escape',
   ENTER: 'Enter'
-}
+};
 var Name = {
   FIRST: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
   LAST: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг']
@@ -127,7 +127,7 @@ var validateMessage = function (validate) {
   }
 
   return message;
-}
+};
 
 var onUserNameValidate = function () {
   var message = validateMessage(SetupNodes.USER_NAME_INPUT.validity);
@@ -154,13 +154,13 @@ var onChangeColorClick = function (evt) {
     color = getRandomElement(Color.FIREBALL);
     cssProperty = 'background';
     SetupNodes.FIREBALL_COLOR_INPUT.value = color;
-  } else if (currentElement == SetupNodes.WIZARD_COAT) {
+  } else if (currentElement === SetupNodes.WIZARD_COAT) {
     color = getRandomElement(Color.COAT);
     SetupNodes.COAT_COLOR_INPUT.value = color;
   }
 
   changeElementColor(currentElement, cssProperty, color);
-}
+};
 
 SetupNodes.WIZARD_COAT.addEventListener('click', onChangeColorClick);
 SetupNodes.WIZARD_EYES.addEventListener('click', onChangeColorClick);
