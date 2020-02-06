@@ -1,7 +1,9 @@
 'use strict';
 
-var ESC_KEY = 'Escape';
-var ENTER_KEY = 'Enter';
+var Key = {
+  ESC: 'Escape',
+  ENTER: 'Enter'
+}
 var Name = {
   FIRST: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
   LAST: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг']
@@ -75,7 +77,7 @@ var addCharactersToList = function (characters) {
 // Close/open window setup
 
 var onSetupEscKeyDown = function (evt) {
-  if (evt.key === ESC_KEY && evt.target !== SetupNodes.USER_NAME_INPUT) {
+  if (evt.key === Key.ESC && evt.target !== SetupNodes.USER_NAME_INPUT) {
     closeSetup();
   }
 };
@@ -96,7 +98,7 @@ Nodes.SETUP_OPEN.addEventListener('click', function () {
 });
 
 Nodes.SETUP_OPEN.addEventListener('keydown', function (evt) {
-  if (evt.key === ENTER_KEY) {
+  if (evt.key === Key.ENTER) {
     openSetup();
   }
 });
@@ -106,24 +108,33 @@ SetupNodes.SETUP_CLOSE.addEventListener('click', function () {
 });
 
 SetupNodes.SETUP_CLOSE.addEventListener('keydown', function (evt) {
-  if (evt.key === ENTER_KEY) {
+  if (evt.key === Key.ENTER) {
     closeSetup();
   }
 });
 
 // Validate user name input
 
-SetupNodes.USER_NAME_INPUT.addEventListener('invalid', function () {
-  if (SetupNodes.USER_NAME_INPUT.validity.tooShort) {
-    SetupNodes.USER_NAME_INPUT.setCustomValidity('Имя должно состоять минимум из 2-х символов');
-  } else if (SetupNodes.USER_NAME_INPUT.validity.tooLong) {
-    SetupNodes.setCustomVilidity('Имя не должно превышать 25-ти символов');
-  } else if (SetupNodes.USER_NAME_INPUT.validity.valueMissing) {
-    SetupNodes.USER_NAME_INPUT.setCustomValidity('Обязательное поле');
-  } else {
-    SetupNodes.USER_NAME_INPUT.setCustomValidity('');
+var validateMessage = function (validate) {
+  var message = '';
+
+  if (validate.tooShort) {
+    message = 'Имя должно состоять минимум из 2-х символов';
+  } else if (validate.tooLong) {
+    message = 'Имя не должно превышать 25-ти символов';
+  } else if (validate.valueMissing) {
+    message = 'Обязательное поле';
   }
-});
+
+  return message;
+}
+
+var onUserNameValidate = function () {
+  var message = validateMessage(SetupNodes.USER_NAME_INPUT.validity);
+  SetupNodes.USER_NAME_INPUT.setCustomValidity(message);
+};
+
+SetupNodes.USER_NAME_INPUT.addEventListener('invalid', onUserNameValidate);
 
 // Change character
 
@@ -131,23 +142,29 @@ var changeElementColor = function (element, cssProperty, color) {
   element.setAttribute('style', cssProperty + ': ' + color);
 };
 
-SetupNodes.WIZARD_COAT.addEventListener('click', function (evt) {
-  var color = getRandomElement(Color.COAT);
-  changeElementColor(evt.currentTarget, 'fill', color);
-  SetupNodes.COAT_COLOR_INPUT.value = color;
-});
+var onChangeColorClick = function (evt) {
+  var color = '';
+  var currentElement = evt.currentTarget;
+  var cssProperty = 'fill';
 
-SetupNodes.WIZARD_EYES.addEventListener('click', function (evt) {
-  var color = getRandomElement(Color.EYES);
-  changeElementColor(evt.currentTarget, 'fill', color);
-  SetupNodes.EYES_COLOR_INPUT.value = color;
-});
+  if (currentElement === SetupNodes.WIZARD_EYES) {
+    color = getRandomElement(Color.EYES);
+    SetupNodes.EYES_COLOR_INPUT.value = color;
+  } else if (currentElement === SetupNodes.FIREBALL) {
+    color = getRandomElement(Color.FIREBALL);
+    cssProperty = 'background';
+    SetupNodes.FIREBALL_COLOR_INPUT.value = color;
+  } else if (currentElement == SetupNodes.WIZARD_COAT) {
+    color = getRandomElement(Color.COAT);
+    SetupNodes.COAT_COLOR_INPUT.value = color;
+  }
 
-SetupNodes.FIREBALL.addEventListener('click', function (evt) {
-  var color = getRandomElement(Color.FIREBALL);
-  changeElementColor(evt.currentTarget, 'background', color);
-  SetupNodes.FIREBALL_COLOR_INPUT.value = color;
-});
+  changeElementColor(currentElement, cssProperty, color);
+}
+
+SetupNodes.WIZARD_COAT.addEventListener('click', onChangeColorClick);
+SetupNodes.WIZARD_EYES.addEventListener('click', onChangeColorClick);
+SetupNodes.FIREBALL.addEventListener('click', onChangeColorClick);
 
 Nodes.SIMILAR_LIST_ELEMENT.appendChild(addCharactersToList(createCharacters(NUMBER_CHARACTERS)));
 Nodes.SETUP_WINDOW.querySelector('.setup-similar').classList.remove('hidden');
