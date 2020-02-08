@@ -1,18 +1,5 @@
 'use strict';
 
-var Key = {
-  ESC: 'Escape',
-  ENTER: 'Enter'
-};
-var Name = {
-  FIRST: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
-  LAST: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг']
-};
-var Color = {
-  COAT: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
-  EYES: ['black', 'red', 'blue', 'yellow', 'green'],
-  FIREBALL: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
-};
 var Nodes = {
   SIMILAR_LIST_ELEMENT: document.querySelector('.setup-similar-list'),
   SIMILAR_CHARACTER_TEMPLATE: document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item'),
@@ -31,19 +18,11 @@ var SetupNodes = {
 };
 var NUMBER_CHARACTERS = 4;
 
-var generateCharacter = function () {
-  return {
-    name: window.util.getRandomElement(Name.FIRST) + ' ' + window.util.getRandomElement(Name.LAST),
-    coatColor: window.util.getRandomElement(Color.COAT),
-    eyesColor: window.util.getRandomElement(Color.EYES)
-  };
-};
-
 var createCharacters = function (count) {
   var characters = [];
 
   for (var i = 0; i < count; i++) {
-    characters.push(generateCharacter());
+    characters.push(window.generateCharacter());
   }
 
   return characters;
@@ -144,14 +123,14 @@ var onChangeColorClick = function (evt) {
   var cssProperty = 'fill';
 
   if (currentElement === SetupNodes.WIZARD_EYES) {
-    color = getRandomElement(Color.EYES);
+    color = window.util.getRandomElement(Color.EYES);
     SetupNodes.EYES_COLOR_INPUT.value = color;
   } else if (currentElement === SetupNodes.FIREBALL) {
-    color = getRandomElement(Color.FIREBALL);
+    color =  window.util.getRandomElement(Color.FIREBALL);
     cssProperty = 'background';
     SetupNodes.FIREBALL_COLOR_INPUT.value = color;
   } else if (currentElement === SetupNodes.WIZARD_COAT) {
-    color = getRandomElement(Color.COAT);
+    color =  window.util.getRandomElement(Color.COAT);
     SetupNodes.COAT_COLOR_INPUT.value = color;
   }
 
