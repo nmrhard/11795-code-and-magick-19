@@ -31,15 +31,11 @@ var SetupNodes = {
 };
 var NUMBER_CHARACTERS = 4;
 
-var getRandomElement = function (items) {
-  return items[Math.floor(Math.random() * items.length)];
-};
-
 var generateCharacter = function () {
   return {
-    name: getRandomElement(Name.FIRST) + ' ' + getRandomElement(Name.LAST),
-    coatColor: getRandomElement(Color.COAT),
-    eyesColor: getRandomElement(Color.EYES)
+    name: window.util.getRandomElement(Name.FIRST) + ' ' + window.util.getRandomElement(Name.LAST),
+    coatColor: window.util.getRandomElement(Color.COAT),
+    eyesColor: window.util.getRandomElement(Color.EYES)
   };
 };
 

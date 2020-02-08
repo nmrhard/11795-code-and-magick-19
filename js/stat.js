@@ -19,6 +19,7 @@ var MAX_BAR_HEIGHT = 150;
 var BAR_GAP = 50;
 var NAME_GAP = 5;
 var NAME_HEIGHT = 20;
+var STEP = 20;
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -31,12 +32,12 @@ var getBarColor = function (player, i) {
     return barColor;
   }
 
-  var saturation = 20 * i;
+  var saturation = STEP * i;
   if (saturation > 100) {
     saturation = Math.floor(Math.random() * 100);
   }
 
-  var barColor = 'hsl(240,' + 20 * i + '%, 50%)';
+  var barColor = 'hsl(240,' + saturation + '%, 50%)';
 
   return barColor;
 };
