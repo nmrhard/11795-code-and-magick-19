@@ -3,6 +3,7 @@
 (function () {
   window.setupNodes = {
     SETUP_CLOSE: window.nodes.SETUP_WINDOW.querySelector('.setup-close'),
+    DIALOG_HANDLER: window.nodes.SETUP_WINDOW.querySelector('.upload'),
     USER_NAME_INPUT: window.nodes.SETUP_WINDOW.querySelector('.setup-user-name'),
     WIZARD_COAT: window.nodes.SETUP_WINDOW.querySelector('.wizard-coat'),
     WIZARD_EYES: window.nodes.SETUP_WINDOW.querySelector('.wizard-eyes'),

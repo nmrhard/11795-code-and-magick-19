@@ -1,17 +1,26 @@
 'use srtict';
 
 (function () {
+  var defaultCoords = {
+    x: 0,
+    y: 0
+  }
+
   var onSetupEscKeyDown = function (evt) {
     window.util.isEscEvent(evt, closeSetup);
   };
 
   var openSetup = function () {
     window.nodes.SETUP_WINDOW.classList.remove('hidden');
+    defaultCoords.x = window.nodes.SETUP_WINDOW.offsetLeft;
+    defaultCoords.y = window.nodes.SETUP_WINDOW.offsetTop;
     document.addEventListener('keydown', onSetupEscKeyDown);
   };
 
   var closeSetup = function () {
     window.nodes.SETUP_WINDOW.classList.add('hidden');
+    window.nodes.SETUP_WINDOW.style.top = defaultCoords.y + 'px';
+    window.nodes.SETUP_WINDOW.style.left = defaultCoords.x + 'px';
     document.removeEventListener('keydown', onSetupEscKeyDown);
   };
 
