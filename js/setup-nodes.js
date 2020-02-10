@@ -11,5 +11,5 @@
     COAT_COLOR_INPUT: window.nodes.SETUP_WINDOW.querySelector('input[name=coat-color]'),
     EYES_COLOR_INPUT: window.nodes.SETUP_WINDOW.querySelector('input[name=eyes-color]'),
     FIREBALL_COLOR_INPUT: window.nodes.SETUP_WINDOW.querySelector('input[name=fireball-color]')
-  }
+  };
 })();

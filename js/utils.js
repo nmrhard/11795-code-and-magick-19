@@ -18,14 +18,14 @@ window.util = (function () {
 
   var isEnterEvent = function (evt, action) {
     if (evt.key === Key.ENTER) {
-      action()
+      action();
     }
-  }
+  };
 
   return {
     getRandomElement: getRandomElement,
     isEscEvent: isEscEvent,
     isEnterEvent: isEnterEvent
-  }
+  };
 })();
 

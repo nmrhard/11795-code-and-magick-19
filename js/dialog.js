@@ -1,10 +1,10 @@
-'use srtict';
+'use strict';
 
 (function () {
   var defaultCoords = {
     x: 0,
     y: 0
-  }
+  };
 
   var onSetupEscKeyDown = function (evt) {
     window.util.isEscEvent(evt, closeSetup);

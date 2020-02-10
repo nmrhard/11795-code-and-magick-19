@@ -7,7 +7,7 @@
     var startCoords = {
       x: evt.clientX,
       y: evt.clientY
-    }
+    };
 
     var isDragges = false;
 
@@ -39,13 +39,13 @@
         var onClickPreventDeafult = function (clickEvt) {
           clickEvt.preventDefault();
           window.setupNodes.DIALOG_HANDLER.removeEventListener('click', onClickPreventDeafult);
-        }
+        };
         window.setupNodes.DIALOG_HANDLER.addEventListener('click', onClickPreventDeafult);
       }
-    }
+    };
 
     document.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
-  }
+  };
   window.setupNodes.DIALOG_HANDLER.addEventListener('mousedown', onDialogMouseDown);
 })();

@@ -22,5 +22,5 @@
 
   window.validate = function (element) {
     element.addEventListener('invalid', onInputValidate);
-  }
+  };
 })();

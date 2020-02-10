@@ -16,11 +16,11 @@
       color = window.util.getRandomElement(Color.EYES);
       window.setupNodes.EYES_COLOR_INPUT.value = color;
     } else if (currentElement === window.setupNodes.FIREBALL) {
-      color =  window.util.getRandomElement(Color.FIREBALL);
+      color = window.util.getRandomElement(Color.FIREBALL);
       cssProperty = 'background';
       window.setupNodes.FIREBALL_COLOR_INPUT.value = color;
     } else if (currentElement === window.setupNodes.WIZARD_COAT) {
-      color =  window.util.getRandomElement(Color.COAT);
+      color = window.util.getRandomElement(Color.COAT);
       window.setupNodes.COAT_COLOR_INPUT.value = color;
     }
 
@@ -33,5 +33,5 @@
 
   window.colorize = function (element) {
     element.addEventListener('click', onChangeColorClick);
-  }
+  };
 })();
