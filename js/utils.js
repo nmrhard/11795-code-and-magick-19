@@ -10,13 +10,13 @@ window.util = (function () {
     return items[Math.floor(Math.random() * items.length)];
   };
 
-  var isEscEvent = function(evt, action) {
-    if (evt.key === Key.ESC) {
-      action()
+  var isEscEvent = function (evt, action) {
+    if (evt.key === Key.ESC && evt.target.tagName.toLowerCase() !== 'input') {
+      action();
     }
-  }
+  };
 
-  var isEnterEvent = function(evt, action) {
+  var isEnterEvent = function (evt, action) {
     if (evt.key === Key.ENTER) {
       action()
     }
