@@ -23,15 +23,5 @@
     return fragment;
   };
 
-  var createCharacters = function (count) {
-    var characters = [];
-
-    for (var i = 0; i < count; i++) {
-      characters.push(window.generateCharacter());
-    }
-
-    return characters;
-  };
-
-  window.nodes.SIMILAR_LIST_ELEMENT.appendChild(addCharactersToList(createCharacters(NUMBER_CHARACTERS)));
+  window.nodes.setupNodes.SIMILAR_LIST_ELEMENT.appendChild(addCharactersToList(window.data.mock(NUMBER_CHARACTERS)));
 })();

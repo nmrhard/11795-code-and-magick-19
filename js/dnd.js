@@ -47,5 +47,5 @@
     document.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
   };
-  window.setupNodes.DIALOG_HANDLER.addEventListener('mousedown', onDialogMouseDown);
+  window.nodes.setupNodes.DIALOG_HANDLER.addEventListener('mousedown', onDialogMouseDown);
 })();

@@ -1,7 +1,7 @@
 'use strict';
 
-(function () {
-  var Name = {
+window.data = (function () {
+    var Name = {
     FIRST: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
     LAST: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг']
   };
@@ -11,11 +11,25 @@
     FIREBALL: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
   };
 
-  window.generateCharacter = function () {
+  var mockItem = function () {
     return {
       name: window.util.getRandomElement(Name.FIRST) + ' ' + window.util.getRandomElement(Name.LAST),
       coatColor: window.util.getRandomElement(Color.COAT),
       eyesColor: window.util.getRandomElement(Color.EYES)
     };
   };
+
+  var mock = function (count) {
+    var characters = [];
+
+    for (var i = 0; i < count; i++) {
+      characters.push(mockItem());
+    }
+
+    return characters;
+  };
+
+  return {
+    mock: mock
+  }
 })();

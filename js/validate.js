@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+window.validate = (function () {
   var validateMessage = function (validate) {
     var message = '';
 
@@ -16,11 +16,15 @@
   };
 
   var onInputValidate = function () {
-    var message = validateMessage(window.setupNodes.USER_NAME_INPUT.validity);
-    window.setupNodes.USER_NAME_INPUT.setCustomValidity(message);
+    var message = validateMessage(window.nodes.setupNodes.USER_NAME_INPUT.validity);
+    window.nodes.setupNodes.USER_NAME_INPUT.setCustomValidity(message);
   };
 
-  window.validate = function (element) {
+  var userNameVilidate = function (element) {
     element.addEventListener('invalid', onInputValidate);
+  };
+
+  return {
+    userNameVilidate: userNameVilidate
   };
 })();

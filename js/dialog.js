@@ -32,11 +32,11 @@
     window.util.isEnterEvent(evt, openSetup);
   });
 
-  window.setupNodes.SETUP_CLOSE.addEventListener('click', function () {
+  window.nodes.setupNodes.SETUP_CLOSE.addEventListener('click', function () {
     closeSetup();
   });
 
-  window.setupNodes.SETUP_CLOSE.addEventListener('keydown', function (evt) {
+  window.nodes.setupNodes.SETUP_CLOSE.addEventListener('keydown', function (evt) {
     window.util.isEnterEvent(evt, closeSetup);
   });
 })();
