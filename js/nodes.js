@@ -25,5 +25,5 @@ window.nodes = (function () {
     SIMILAR_CHARACTER_TEMPLATE: SIMILAR_CHARACTER_TEMPLATE,
     SETUP_WINDOW: SETUP_WINDOW,
     SETUP_OPEN: SETUP_OPEN
-  }
+  };
 })();
