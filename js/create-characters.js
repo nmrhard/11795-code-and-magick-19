@@ -1,8 +1,6 @@
 'use strict';
 
-(function () {
-  var NUMBER_CHARACTERS = 4;
-
+window.createCharacter = (function () {
   var renderCharacter = function (character) {
     var characterElement = window.nodes.SIMILAR_CHARACTER_TEMPLATE.cloneNode(true);
 
@@ -23,5 +21,7 @@
     return fragment;
   };
 
-  window.nodes.setupNodes.SIMILAR_LIST_ELEMENT.appendChild(addCharactersToList(window.data.mock(NUMBER_CHARACTERS)));
+  return {
+    addCharactersToList: addCharactersToList
+  }
 })();

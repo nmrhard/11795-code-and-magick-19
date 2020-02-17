@@ -2,17 +2,14 @@
 
 window.validate = (function () {
   var validateMessage = function (validate) {
-    var message = '';
 
     if (validate.tooShort) {
-      message = 'Имя должно состоять минимум из 2-х символов';
+      return 'Имя должно состоять минимум из 2-х символов';
     } else if (validate.tooLong) {
-      message = 'Имя не должно превышать 25-ти символов';
+      return 'Имя не должно превышать 25-ти символов';
     } else if (validate.valueMissing) {
-      message = 'Обязательное поле';
+      return 'Обязательное поле';
     }
-
-    return message;
   };
 
   var onInputValidate = function () {
