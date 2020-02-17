@@ -45,7 +45,7 @@
     var saturation = STEP * i;
     saturation = (saturation <= 100) ? STEP * i : Math.floor(Math.random() * 100);
 
-    return 'hsl(240,' + saturation + '%, 50%)';;
+    return 'hsl(240,' + saturation + '%, 50%)';
   };
 
   var getResultY = function (multiplier, height) {
