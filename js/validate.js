@@ -10,6 +10,8 @@ window.validate = (function () {
     } else if (validate.valueMissing) {
       return 'Обязательное поле';
     }
+
+    return '';
   };
 
   var onInputValidate = function () {
