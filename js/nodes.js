@@ -17,7 +17,8 @@ window.nodes = (function () {
     COAT_COLOR_INPUT: SETUP_WINDOW.querySelector('input[name=coat-color]'),
     EYES_COLOR_INPUT: SETUP_WINDOW.querySelector('input[name=eyes-color]'),
     FIREBALL_COLOR_INPUT: SETUP_WINDOW.querySelector('input[name=fireball-color]'),
-    SIMILAR_LIST_ELEMENT: SETUP_WINDOW.querySelector('.setup-similar-list')
+    SIMILAR_LIST_ELEMENT: SETUP_WINDOW.querySelector('.setup-similar-list'),
+    SETUP_FORM: SETUP_WINDOW.querySelector('.setup-wizard-form')
   };
 
   return {

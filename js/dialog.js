@@ -10,6 +10,13 @@
     window.util.isEscEvent(evt, closeSetup);
   };
 
+  var onFormSubmit = function (evt) {
+    window.backend.save(new FormData(window.nodes.setupNodes.SETUP_FORM), function () {
+      window.nodes.SETUP_WINDOW.classList.add('hidden');
+    }, window.util.errorHandler);
+    evt.preventDefault();
+  };
+
   var openSetup = function () {
     window.nodes.SETUP_WINDOW.classList.remove('hidden');
     defaultCoords.x = window.nodes.SETUP_WINDOW.offsetLeft;
@@ -39,4 +46,6 @@
   window.nodes.setupNodes.SETUP_CLOSE.addEventListener('keydown', function (evt) {
     window.util.isEnterEvent(evt, closeSetup);
   });
+
+  window.nodes.setupNodes.SETUP_FORM.addEventListener('submit', onFormSubmit);
 })();
