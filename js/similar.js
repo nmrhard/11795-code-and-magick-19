@@ -1,3 +1,5 @@
+'use strict';
+
 window.similar = (function () {
   var coatColor;
   var eyesColor;
@@ -27,7 +29,7 @@ window.similar = (function () {
   };
 
   var updateCharacter = function () {
-   window.createCharacter.renderCharacters(characters.sort(function (left, right) {
+    window.createCharacter.renderCharacters(characters.sort(function (left, right) {
       var rankDiff = getRank(right) - getRank(left);
       if (rankDiff === 0) {
         rankDiff = nameComparator(left.name, right.name);
@@ -49,9 +51,9 @@ window.similar = (function () {
   var successHandler = function (data) {
     characters = data;
     updateCharacter();
-  }
+  };
 
   return {
     successHandler: successHandler
-  }
+  };
 })();
