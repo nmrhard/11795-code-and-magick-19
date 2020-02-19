@@ -16,6 +16,7 @@ window.createCharacter = (function () {
   var renderCharacters = function (characters) {
     var fragment = document.createDocumentFragment();
 
+    window.nodes.SetupNode.SIMILAR_LIST_ELEMENT.innerHTML = '';
     for (var i = 0; i < NUMBER_CHARACTERS; i++) {
       fragment.appendChild(renderCharacter(characters[i]));
     }

@@ -6,7 +6,7 @@
   window.nodes.SetupNode.WIZARD_COAT.addEventListener('click', window.colorize.onCoatColorClick);
   window.validate.userNameVilidate(window.nodes.SetupNode.USER_NAME_INPUT);
 
-  window.backend.load(window.createCharacter.renderCharacters, window.util.errorHandler);
+  window.backend.load(window.similar.successHandler, window.util.errorHandler);
   window.nodes.SetupNode.SETUP_SIMILAR.classList.remove('hidden');
 })();
 

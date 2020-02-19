@@ -7,6 +7,11 @@ window.colorize = (function () {
     FIREBALL: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
   };
 
+  var character = {
+    onEyesChange: function () {},
+    onCoatChange: function () {}
+  };
+
   var changeElementColor = function (element, cssProperty, color) {
     element.setAttribute('style', cssProperty + ': ' + color);
   };
@@ -14,12 +19,14 @@ window.colorize = (function () {
   var onEyesColorClick = function (evt) {
     var color = window.util.getRandomElement(Color.EYES);
     changeElementColor(evt.currentTarget, 'fill', color);
+    character.onEyesChange(color);
     window.nodes.SetupNode.EYES_COLOR_INPUT.value = color;
   };
 
   var onCoatColorClick = function (evt) {
     var color = window.util.getRandomElement(Color.COAT);
     changeElementColor(evt.currentTarget, 'fill', color);
+    character.onCoatChange(color);
     window.nodes.SetupNode.COAT_COLOR_INPUT.value = color;
   };
 
@@ -32,6 +39,7 @@ window.colorize = (function () {
   return {
     onEyesColorClick: onEyesColorClick,
     onCoatColorClick: onCoatColorClick,
-    onFireballColorClick: onFireballColorClick
+    onFireballColorClick: onFireballColorClick,
+    character: character
   };
 })();
