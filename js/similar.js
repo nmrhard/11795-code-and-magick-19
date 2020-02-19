@@ -36,15 +36,15 @@ window.similar = (function () {
     }));
   };
 
-  window.colorize.character.onEyesChange = function (color) {
+  window.colorize.character.onEyesChange = window.debounce(function (color) {
     eyesColor = color;
     updateCharacter();
-  }
+  });
 
-  window.colorize.character.onCoatChange = function (color) {
+  window.colorize.character.onCoatChange = window.debounce(function (color) {
     coatColor = color;
     updateCharacter();
-  }
+  });
 
   var successHandler = function (data) {
     characters = data;
