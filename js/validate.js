@@ -15,8 +15,8 @@ window.validate = (function () {
   };
 
   var onInputValidate = function () {
-    var message = validateMessage(window.nodes.setupNodes.USER_NAME_INPUT.validity);
-    window.nodes.setupNodes.USER_NAME_INPUT.setCustomValidity(message);
+    var message = validateMessage(window.nodes.SetupNode.USER_NAME_INPUT.validity);
+    window.nodes.SetupNode.USER_NAME_INPUT.setCustomValidity(message);
   };
 
   var userNameVilidate = function (element) {

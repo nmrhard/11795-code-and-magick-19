@@ -38,14 +38,14 @@
       if (isDragges) {
         var onClickPreventDeafult = function (clickEvt) {
           clickEvt.preventDefault();
-          window.setupNodes.DIALOG_HANDLER.removeEventListener('click', onClickPreventDeafult);
+          window.SetupNode.DIALOG_HANDLER.removeEventListener('click', onClickPreventDeafult);
         };
-        window.setupNodes.DIALOG_HANDLER.addEventListener('click', onClickPreventDeafult);
+        window.SetupNode.DIALOG_HANDLER.addEventListener('click', onClickPreventDeafult);
       }
     };
 
     document.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
   };
-  window.nodes.setupNodes.DIALOG_HANDLER.addEventListener('mousedown', onDialogMouseDown);
+  window.nodes.SetupNode.DIALOG_HANDLER.addEventListener('mousedown', onDialogMouseDown);
 })();

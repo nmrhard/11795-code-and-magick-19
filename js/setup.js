@@ -1,12 +1,12 @@
 'use strict';
 
 (function () {
-  window.nodes.setupNodes.FIREBALL.addEventListener('click', window.colorize.onFireballColorClick);
-  window.nodes.setupNodes.WIZARD_EYES.addEventListener('click', window.colorize.onEyesColorClick);
-  window.nodes.setupNodes.WIZARD_COAT.addEventListener('click', window.colorize.onCoatColorClick);
-  window.validate.userNameVilidate(window.nodes.setupNodes.USER_NAME_INPUT);
+  window.nodes.SetupNode.FIREBALL.addEventListener('click', window.colorize.onFireballColorClick);
+  window.nodes.SetupNode.WIZARD_EYES.addEventListener('click', window.colorize.onEyesColorClick);
+  window.nodes.SetupNode.WIZARD_COAT.addEventListener('click', window.colorize.onCoatColorClick);
+  window.validate.userNameVilidate(window.nodes.SetupNode.USER_NAME_INPUT);
 
-  window.backend.load(window.createCharacter.addCharactersToList, window.util.errorHandler);
-  window.nodes.setupNodes.SETUP_SIMILAR.classList.remove('hidden');
+  window.backend.load(window.createCharacter.renderCharacters, window.util.errorHandler);
+  window.nodes.SetupNode.SETUP_SIMILAR.classList.remove('hidden');
 })();
 

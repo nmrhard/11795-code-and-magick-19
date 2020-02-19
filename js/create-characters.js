@@ -13,17 +13,17 @@ window.createCharacter = (function () {
     return characterElement;
   };
 
-  var addCharactersToList = function (characters) {
+  var renderCharacters = function (characters) {
     var fragment = document.createDocumentFragment();
 
     for (var i = 0; i < NUMBER_CHARACTERS; i++) {
       fragment.appendChild(renderCharacter(characters[i]));
     }
 
-    window.nodes.setupNodes.SIMILAR_LIST_ELEMENT.appendChild(fragment);
+    window.nodes.SetupNode.SIMILAR_LIST_ELEMENT.appendChild(fragment);
   };
 
   return {
-    addCharactersToList: addCharactersToList
+    renderCharacters: renderCharacters
   };
 })();

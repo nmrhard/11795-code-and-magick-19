@@ -11,7 +11,7 @@
   };
 
   var onFormSubmit = function (evt) {
-    window.backend.save(new FormData(window.nodes.setupNodes.SETUP_FORM), function () {
+    window.backend.save(new FormData(window.nodes.SetupNode.SETUP_FORM), function () {
       window.nodes.SETUP_WINDOW.classList.add('hidden');
     }, window.util.errorHandler);
     evt.preventDefault();
@@ -39,13 +39,13 @@
     window.util.isEnterEvent(evt, openSetup);
   });
 
-  window.nodes.setupNodes.SETUP_CLOSE.addEventListener('click', function () {
+  window.nodes.SetupNode.SETUP_CLOSE.addEventListener('click', function () {
     closeSetup();
   });
 
-  window.nodes.setupNodes.SETUP_CLOSE.addEventListener('keydown', function (evt) {
+  window.nodes.SetupNode.SETUP_CLOSE.addEventListener('keydown', function (evt) {
     window.util.isEnterEvent(evt, closeSetup);
   });
 
-  window.nodes.setupNodes.SETUP_FORM.addEventListener('submit', onFormSubmit);
+  window.nodes.SetupNode.SETUP_FORM.addEventListener('submit', onFormSubmit);
 })();

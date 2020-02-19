@@ -14,19 +14,19 @@ window.colorize = (function () {
   var onEyesColorClick = function (evt) {
     var color = window.util.getRandomElement(Color.EYES);
     changeElementColor(evt.currentTarget, 'fill', color);
-    window.nodes.setupNodes.EYES_COLOR_INPUT.value = color;
+    window.nodes.SetupNode.EYES_COLOR_INPUT.value = color;
   };
 
   var onCoatColorClick = function (evt) {
     var color = window.util.getRandomElement(Color.COAT);
     changeElementColor(evt.currentTarget, 'fill', color);
-    window.nodes.setupNodes.COAT_COLOR_INPUT.value = color;
+    window.nodes.SetupNode.COAT_COLOR_INPUT.value = color;
   };
 
   var onFireballColorClick = function (evt) {
     var color = window.util.getRandomElement(Color.FIREBALL);
     changeElementColor(evt.currentTarget, 'background', color);
-    window.nodes.setupNodes.FIREBALL_COLOR_INPUT.value = color;
+    window.nodes.SetupNode.FIREBALL_COLOR_INPUT.value = color;
   };
 
   return {
